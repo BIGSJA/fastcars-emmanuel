@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Registration {% endblock %}
+{% include 'partials/messages.html' %}
+{% block main %}
+<style>
+    .hero{
+        width: 100%;
+        height: 100vh;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-image: linear-gradient(62deg,
+            rgb(0, 0, 0, 0.7) 50%,
+            rgb(0, 0, 0, 0.7) 50%),
+            url("{% static 'images/pexels-alexander-pöllinger-10566898.jpg'%}");
+}
+</style>
+
+<!-- Hero Banner Image -->
+<div class="hero"></div>
+<!-- Hero Caption -->
+<div class="hero-caption">
+    <div class="hero-caption" style="position: absolute; width: 100vw; height: 50vh; top: 0; left: 0;">
+        <div class="row align-items-center justify-content-center col-12 m-0 p-0" style="height: 90vh;">
+            <div class="col-lg-8">
+                <div class="text text-center mb-md- pb-md-5">
+                    <h3 class="text-light fw-bold"><span>Home ></span> <span style="color:#2176ff;">Registration</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Registration Form -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="{% static 'images\undraw_Sign_in_re_o58h.png' %}" class="img-fluid col-12" alt="">
+        </div>
+        <div class="col-lg-6 p-2 p-md-4" style="background-color:#31393c;">
+            <h2 class="text-light fw-bold text-center">Sign Up</h2>
+            <form action="" method="POST" class="d-flex flex-wrap">
+                {% csrf_token %}
+                <div class="col-6 mb-2 pe-1">
+                  <label for="firstname" class="form-label"></label>
+                  <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname">
+                </div>
+                <div class="col-6 mb-2 ps-1">
+                  <label for="lastname" class="form-label"></label>
+                  <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname">
+                </div>
+                  <div class="col-6 mb-2 pe-1">
+                    <label for="username" class="form-label"></label>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                  </div>
+                  <div class="col-6 mb-2 ps-1">
+                    <label for="email" class="form-label"></label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+                  </div>
+                  <div class="col-6 mb-2 pe-1">
+                    <label for="password" class="form-label"></label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                  </div>
+                  <div class="col-6 mb-2 ps-1">
+                    <label for="repeat_password" class="form-label"></label>
+                    <input type="password" class="form-control" name="repeat_password" id="repeat_password" placeholder="Repeat Your Password">
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-2">Register</button>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

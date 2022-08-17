@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Services {% endblock %}
+{% block main %}
+<style>
+    .hero{
+        width: 100%;
+        height: 100vh;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-image: linear-gradient(62deg,
+            rgb(0, 0, 0, 0.6) 50%,
+            rgb(0, 0, 0, 0.6) 50%),
+            url("{% static 'images/pexels-alexander-pöllinger-10566898.jpg'%}");
+}
+</style>
+
+<!-- Hero Banner Image -->
+<div class="hero"></div>
+<!-- Hero Caption -->
+<div class="hero-caption">
+    <div class="hero-caption" style="position: absolute; width: 100vw; height: 100vh; top: 0; left: 0;">
+        <div class="row align-items-center justify-content-center col-12 m-0 p-0" style="height: 90vh;">
+            <div class="col-lg-8">
+                <div class="text text-center mb-md- pb-md-5">
+                    <h3 class="text-light fw-bold"><span>Home ></span> <span style="color:#2176ff;">Services</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Our Services -->
+<div class="container px-4 py-5">
+    <div class="row gx-4">
+        <h6 class="text-primary text-center mt-4 fw-bold">SERVICES</h6>
+        <h1 class="text-center mt-2 fw-bold">Our Latest Services</h1>
+        <!--  -->
+        {% for Service in services %}
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center mt-5">
+            <img src="{{Service.image.url}}" alt="">
+                <h6 class="col-12 text-center mb-3">
+                    <h4 class="fw-bold">{{Service.title}}</h4>
+                    <span class="fw-light"><p>{{Service.content}}</p></span>
+                 </h6>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

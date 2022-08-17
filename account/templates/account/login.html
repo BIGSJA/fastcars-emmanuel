@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Login {% endblock %}
+{% include 'partials/messages.html' %}
+{% block main %}
+<style>
+    .hero{
+        width: 100%;
+        height: 100vh;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-image: linear-gradient(62deg,
+            rgb(0, 0, 0, 0.7) 50%,
+            rgb(0, 0, 0, 0.7) 50%),
+            url("{% static 'images/pexels-alexander-pöllinger-10566898.jpg'%}");
+}
+</style>
+
+<!-- Hero Banner Image -->
+<div class="hero"></div>
+<!-- Hero Caption -->
+<div class="hero-caption">
+    <div class="hero-caption" style="position: absolute; width: 100vw; height: 50vh; top: 0; left: 0;">
+        <div class="row align-items-center justify-content-center col-12 m-0 p-0" style="height: 90vh;">
+            <div class="col-lg-8">
+                <div class="text text-center mb-md- pb-md-5">
+                    <h3 class="text-light fw-bold"><span>Home ></span> <span style="color:#2176ff;">Login</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Form -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6 p-2 p-md-4" style="background-color:#31393c;">
+            <h4 class="text-light fw-bold mb-3 text-center">LOGIN</h4>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="mb-3"> 
+                    <label for="email" class="form-label text-light">Email</label>
+                    <input type="email"  class="form-control p-3 col-12" name="email" id="email" placeholder="Email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label text-light">Password</label>
+                    <input type="password" class="form-control p-3 col-12" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="d-grid">
+                    <input type="submit" class="btn btn-primary p-3 mb-2" value="Login">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a href="#" class="text-light text-decoration-underline mb-2">Forgot Password?</a>
+                    <a href="{% url 'registration' %}" class="text-light">Register</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images\undraw_Sign_in_re_o58h.png' %}" class="img-fluid col-12" alt="">
+        </div>
+    </div>
+</div>
+{% endblock %}

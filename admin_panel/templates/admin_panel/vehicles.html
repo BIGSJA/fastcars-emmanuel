@@ -1,0 +1,85 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Vehicles {% endblock %}
+{% block main %}
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-outline-dark float-end my-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Add A Vehicle
+    </button>
+  
+    <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+         <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add A Vehicle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        <div class="modal-body">
+            <form action="{% url 'vehicles' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{vehicleform|crispy}}
+            <button type="submit" class="btn btn-outline-dark">Add</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Vehicles Section -->
+  <div class="container py-5">
+    <div class="row">
+        {% for vehicle in page_obj %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+            <div class="card mb-3">
+                <img src="{{vehicle.image1.url}}" class="rounded" alt="">
+                <div class="card-body">
+                    <h4 class="card-title fw-bold" style="color:#31393c;">{{vehicle.brand}}</h4>
+                    <p class="card-text">
+                    <div class="d-flex justify-content-between">
+                        <small class="text-muted">{{vehicle.vehicle_model}}</small>
+                        <small class="text-muted"><span class="fw-bold" style="color:#2176ff;">${{vehicle.price}}</span> /day</small>
+                    </div>
+                    </p>
+                </div>
+                <div class="d-flex px-3 py-2">
+                    <a class="btn btn-dark col" href="{% url 'vehicle_details' vehicle.id %}">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <nav aria-label="Page navigation" class="my-4">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link"></a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            {% endif %}
+    
+            {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">{{ i }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+    
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link"></a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

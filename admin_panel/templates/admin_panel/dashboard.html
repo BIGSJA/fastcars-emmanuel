@@ -1,0 +1,109 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block title %} Dashboard {% endblock %}
+{% block main %}
+<style>
+    .card{
+        outline:none;
+        border:none;
+        background-color:#2176ff;
+    }
+    .circle{
+        height:70px;
+        width:70px;
+        padding:12px;
+        font-size:35px;
+        border-radius:50%;
+        display:inline-block;
+        margin-bottom:20px;
+    }
+    .card .circle i{
+        color:#2176ff;
+    }
+    .card:hover{
+        background-color:#31393c;
+        color:#31393c;
+        transition: 0.3s all ease-in-out;
+    }
+</style>
+
+<section>
+    <div class="container py-5">
+        <div class="row pb-3">
+            <div class="col-lg-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center justify-content-center">
+                        <div class="circle bg-light">
+                            <span><i class='bx bx-book'></i></span>
+                        </div>
+                        <p class="fw-bolder text-light float-end">{{booking_count}}</p>
+                        <h4 class="text-light">Total Booking</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center justify-content-center">
+                        <div class="circle bg-light">
+                            <span><i class='bx bx-question-mark'></i></span>
+                        </div>
+                        <p class="fw-bolder text-light float-end">{{queries_count}}</p>
+                        <h4 class="text-light">Total Queries</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center justify-content-center">
+                        <div class="circle bg-light">
+                            <span><i class='bx bx-user'></i></span>
+                        </div>
+                        <p class="fw-bolder text-light float-end">{{registered_users}}</p>
+                        <h4 class="text-light">Registered Users</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center justify-content-center">
+                        <div class="circle bg-light">
+                            <span><i class='bx bxs-car'></i></span>
+                        </div>
+                        <p class="fw-bolder text-light float-end">{{total_vehicle}}</p>
+                        <h4 class="text-light">Total Vehicles </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center justify-content-center">
+                        <div class="circle bg-light">
+                            <span><i class='bx bxs-car'></i></span>
+                        </div>
+                        <p class="fw-bolder text-light float-end">0</p>
+                        <h4 class="text-light">Booked Vehicles</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center justify-content-center">
+                        <div class="circle bg-light">
+                            <span><i class='bx bx-envelope'></i></span>
+                        </div>
+                        <p class="fw-bolder text-light float-end">{{subscribers}}</p>
+                        <h4 class="text-light">Total Subscribers</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

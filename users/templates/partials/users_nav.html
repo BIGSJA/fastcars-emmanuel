@@ -1,0 +1,83 @@
+{% load static %}
+<style>
+  .bg-light{
+    background-color:#ffffff !important;
+  }
+  .site-header .nav-link{
+    color:#31393c !important;
+  }
+  .site-header .navbar-nav .active{
+    color:#2176ff !important;
+
+  }
+  .card-image-top{
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+    border-radius: 50% !important;
+  }  
+</style>
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg py-2" style="z-index:3000;">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#"><span class="text-uppercase" style="color:#31393c;" id='first'>Fast</span><span class="text-uppercase" style="color: #2176ff;" id='second'>Cars</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class='bx bx-menu-alt-right'></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'users_dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users_bookings' %}">Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users_cars' %}">Cars</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users_testimonials' %}">Testimonials</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{request.user.profile_images.url}}" class="card-image-top" alt="">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Change Password</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+</header>
+
+
+  {% comment %} <script>
+    $(document).ready(function(){
+      var nav = document.querySelector('nav');
+      window.addEventListener('scroll',function(){
+        if(window.pageYOffset>100){
+          nav.style.background='#ffffff'
+  
+          $(".nav-link").css("color","#31393c")
+  
+          $(".navbar-nav .active").css("color", "#2176ff")
+          
+          $(".navbar-brand #first").css("color", "#31393c")
+  
+          $(".navbar-brand #second").css("color", "#2176ff")
+        }else{
+          nav.style.background='transparent'
+          $(".nav-link, .navbar-brand").css("color","#ffffff")
+          $("navbar-nav .active").css("color", "#ffffff")
+          $(".navbar-brand #first").css("color", "#ffffff")
+          $(".navbar-brand #second").css("color", "#ffffff")
+        }
+      });
+    })
+  </script>   {% endcomment %}

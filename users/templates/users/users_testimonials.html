@@ -1,0 +1,72 @@
+{% extends 'users_base.html' %}
+{% load static %}
+{% load crispy_forms_tags%}
+{% block title %} Testimonials {% endblock %}
+{% block main %}
+<style>
+    .hero{
+        width: 100%;
+        height: 70vh;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-image: linear-gradient(62deg,
+            rgb(0, 0, 0, 0.6) 50%,
+            rgb(0, 0, 0, 0.6) 50%),
+            url("{% static 'images/pexels-alexander-pöllinger-10566898.jpg'%}");
+}
+.card-2{
+    border-radius: 8px;
+    background-color: #FFF;
+}
+.card-image{
+    position:relative;
+    height: 150px;
+    width: 150px;
+    padding: 3px;
+}
+.card-image .card-image-top-2{
+height:100%;
+width:100%;
+object-fit: cover;
+border-radius: 50%;
+} 
+</style>
+
+<!-- Hero Banner Image -->
+<div class="hero"></div>
+<!-- Hero Caption -->
+<div class="hero-caption">
+    <div class="hero-caption" style="position: absolute; width: 100vw; height: 100vh; top: 0; left: 0;">
+        <div class="row align-items-center justify-content-center col-12 m-0 p-0" style="height: 90vh;">
+            <div class="col-lg-8">
+                <div class="text text-center mb-md- pb-md-5">
+                    <h3 class="text-light fw-bold"><span>Dashboard ></span> <span style="color:#2176ff;">Testimonials</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <!--  -->
+        {% for Testimonial in testimonials %}
+        <div class="mb-2">
+        <div class="card-2 mb-5">
+            <div class="card-image mx-auto mb-3">
+                <img src="{{Testimonial.author.profiles.image.url}}" alt="" class="card-image-top-2">
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted text-center">{{Testimonial.description|truncatewords:15}}</p>
+                <h4 class="text-center">{{Testimonial.vehicle}}</h4>
+                <p class="card-text text-center"><small class="text-muted">Posted On: {{Testimonial.date_created}}</small></p>
+                <h5 class="card-title text-uppercase mb-3 text-center">{{Testimonial.author}}</h5>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock%}

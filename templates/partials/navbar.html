@@ -1,0 +1,84 @@
+{% load static %}
+<style>
+  .bg-light{
+    background-color:#ffffff !important;
+  }
+  .nav-link{
+    color: #ffffff;
+  }
+  .navbar-nav .active{
+    color: #ffffff;
+  }
+  .card-image-top{
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+    border-radius: 50% !important;
+  }  
+</style>
+
+<!-- Navbar  -->
+<nav class="navbar navbar-expand-lg fixed-top py-2 shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}"><span style="color:#ffffff;" id="first">FAST</span><span style="color:#ffffff;" id="second">CARS</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class='bx bx-menu-alt-right'></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'registration' %}">Register</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cars' %}">Cars</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'services' %}">Services</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <script>
+    $(document).ready(function(){
+      var nav = document.querySelector('nav');
+      window.addEventListener('scroll',function(){
+        if(window.pageYOffset>100){
+          nav.style.background='#ffffff'
+  
+          $(".nav-link").css("color","#31393c")
+  
+          $(".navbar-nav .active").css("color", "#2176ff")
+          
+          $(".navbar-brand #first").css("color", "#31393c")
+  
+          $(".navbar-brand #second").css("color", "#2176ff")
+        }else{
+          nav.style.background='transparent'
+          $(".nav-link, .navbar-brand").css("color","#ffffff")
+          $("navbar-nav .active").css("color", "#ffffff")
+          $(".navbar-brand #first").css("color", "#ffffff")
+          $(".navbar-brand #second").css("color", "#ffffff")
+        }
+      });
+    })
+  </script>  

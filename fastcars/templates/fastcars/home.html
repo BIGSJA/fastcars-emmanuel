@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Home {% endblock %}
+{% block main %}
+<style>
+.hero {
+    width: 100%;
+    height: 130vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: linear-gradient(62deg,
+        rgb(0, 0, 0, 0.7) 50%,
+        rgb(0, 0, 0, 0.7) 50%),
+        url("{% static 'images/pexels-alexander-pöllinger-10566898.jpg'%}");
+}
+.owl-2-style .owl-nav {
+    display: none; 
+}
+
+.owl-2-style .owl-dots {
+    text-align: center;
+    position: relative;
+}
+
+.owl-2-style .owl-dots .owl-dot {
+    display: inline-block; 
+}
+
+.owl-2-style .owl-dots .owl-dot span {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 0px;
+    background: #cccccc;
+    -webkit-transition: 0.3s all cubic-bezier(0.32, 0.71, 0.53, 0.53);
+    -o-transition: 0.3s all cubic-bezier(0.32, 0.71, 0.53, 0.53);
+    transition: 0.3s all cubic-bezier(0.32, 0.71, 0.53, 0.53);
+    margin: 3px;
+    border-radius: 50%; 
+}
+.owl-2-style .owl-dots .owl-dot.active span {
+    background: #007bff; 
+}
+.owl-2-style .owl-dots .owl-dot:active, .owl-2-style .owl-dots .owl-dot:focus {
+    outline: none; 
+}
+.card-2{
+    border-radius: 8px;
+    background-color: #FFF;
+}
+.card-image{
+    position:relative;
+    height: 150px;
+    width: 150px;
+    padding: 3px;
+}
+.card-image .card-image-top-2{
+height:100%;
+width:100%;
+object-fit: cover;
+border-radius: 50%;
+} 
+</style>
+
+<!-- Hero Banner Image -->
+<div class="hero"></div>
+<!-- Hero Caption -->
+<div class="hero-caption" style="position: absolute; width: 100vw; height: 100vh; top: 0; left: 0;">
+    <div class="row align-items-center justify-content-center col-12 m-0 p-0" style="height: 100vh;">
+        <div class="col-lg-8 mt-5">
+            <div class="text text-center mb-md-5 pb-md-5">
+                <h1 class="animate__animated animate__fadeInDown animate__delay-2s mb-4 text-light fw-bold">Fast & Easy Way To Rent A Car</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Car Rentals -->
+<div class="container my-5">
+    <div class="d-flex flex-wrap align-items-center" style="margin-top: -35vh; z-index: 2;">
+        <div class="col-12 col-lg-4 bg-primary">
+            <div class="text-content text-light mt-4 mx-3">
+                <h4>Make Your Trip</h4>
+            </div>
+            <form action="{% url 'booking' %}" method="POST">
+                {% csrf_token %}
+                {{booking_form|crispy}}
+
+                
+                <button type="submit" class="btn btn-dark mb-2 mx-2 justify-content-center">Rent A Car Now</button>
+            </form>
+        </div>
+
+        <div class="col-lg-8 bg-light py-5 px-3" style="height: fit-content !important;">
+            <div class="text-content text-dark mx-3">
+                <h4 class="fw-bold justify-content-center align-items-center">Better Way To Rent Your Perfect Cars</h4>
+            </div>
+
+            <div class="container px-4 mt-5">
+                <div class="row gx-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center">
+                        <img src="{% static 'images/handshake.png' %}" alt="">
+                        <h6 class="col-12 text-center mt-3">
+                            <span>Select The Best Deal</span>
+                        </h6>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center">
+                        <img src="{% static 'images/car-rental.png' %}" alt="">
+                        <h6 class="col-12 text-center mt-3">
+                            <span>Reserve Your Rental Car</span>
+                        </h6>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center">
+                        <img src="{% static 'images/location.png' %}" alt="">
+                        <h6 class="col-12 text-center mt-3">
+                            <span>Choose Your Pickup Location</span>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark mt-4 mx-3">Reserve Your Perfect Car</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cars -->
+<div class="owl-2-style py-5 container-fluid" style="background-color:#EFEFEF; width:100vw !important;">
+    <h3 class="fw-bold text-center my-4">Our Featured Vehicles</h3>
+    <div class="owl-carousel owl-2">
+        <!--  -->
+        {% for Vehicle in vehicles %}
+        <div class="mb-3">
+            <div class="card mb-3">
+                <img src="{{Vehicle.image1.url}}" alt="" class="card-img-top rounded">
+                <div class="card-body">
+                    <h4 class="card-title fw-bold" style="color:#31393c;">{{Vehicle.brand}}</h4>
+                    <p class="card-text">
+                    <div class="d-flex justify-content-between">
+                        <small class="text-muted">{{Vehicle.vehicle_model}}</small>
+                        <small class="text-muted"><span class="fw-bold" style="color:#2176ff;">${{Vehicle.price}} </span>/day</small>
+                    </div>
+                    </p>
+                </div>
+                <div class="button d-flex px-3 py-2">
+                    <a class="btn btn-dark col" href="{% url 'vehicle_details' Vehicle.id %}">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- About Us -->
+<div class="container py-3">
+    <div class="row">
+        <h6 class="text-primary text-center mb-3 fw-bold text-uppercase">About Us</h6>
+        <h1 class="text-center fw-bold">Welcome To Fast Cars</h1>
+        <div class="col-lg-6 my-4">
+            <h2 class="text-dark mb-3 fw-bold"><span>Our</span> <span style="color:#2176ff;">Mission</span></h2>
+            <p class="fw-light mb-3">Our mission is to satisfy our customers to their best taste and be the best among all other competitors in the market.</p>
+        </div>
+        <div class="col-lg-6 my-4">
+            <img src="{% static 'images/pexels-alexander-pöllinger-10566898.jpg' %}" alt="" class=" img-fluid col-12">
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-lg-6">
+            <img src="{% static 'images/pexels-alexander-pöllinger-10566898.jpg' %}" alt="" class="img-fluid col-12">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="text-dark mb-3 fw-bold"><span>Our</span> <span style="color:#2176ff;">Vision</h2>
+            <p class="fw-light mb-3">Our vision is to be the top most recommended car rentals platform across the globe with the help of our customers</p>
+        </div>
+    </div>
+</div>
+
+<!-- Our Services -->
+<div class="container px-4 py-5">
+    <div class="row gx-4">
+        <h6 class="text-primary text-center mt-4 fw-bold">SERVICES</h6>
+        <h1 class="text-center mt-2 fw-bold">Our Latest Services</h1>
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center mt-5">
+            <img src="{% static 'images/handshake.png' %}" alt="">
+                <h6 class="col-12 text-center mb-3">
+                    <h4 class="fw-bold">Wedding Ceremony</h4>
+                 </h6>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center mt-5">
+            <img src="{% static 'images/car-rental.png' %}" alt="">
+                <h6 class="col-12 text-center mb-3">
+                    <h4 class="fw-bold">Airport Transfer</h4>
+                </h6>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center mt-5">
+            <img src="{% static 'images/location.png' %}" alt="">
+                <h6 class="col-12 text-center mb-3">
+                    <h4 class="fw-bold">City Transfer</h4>
+                </h6>
+        </div>
+    </div>
+</div>
+
+  <!-- Testimonals -->
+  <div class="owl-2-style container-fluid py-5" style="background-color:#EFEFEF; width:100vw !important;">
+    <h6 class="text-center text-uppercase fw-bold mb-3" style="color:#2176ff;">Testimonial</h6>
+    <h1 class="text-center fw-bold text-dark mb-3">Happy Clients</h1>
+    <div class="owl-carousel owl-2">
+        <!--  -->
+            {% for testimonial in testimonials %}
+            <div class="mb-2">
+            <div class="card-2 mb-5">
+                <div class="card-image mx-auto mb-3">
+                    <img src="{{testimonial.author.profiles.image.url}}" alt="" class="card-image-top-2">
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted text-center">{{testimonial.description|truncatewords:15}}</p>
+                    <h4 class="text-center">{{testimonial.vehicle}}</h4>
+                    <p class="card-text text-center"><small class="text-muted">Posted On: {{testimonial.date_created}}</small></p>
+                    <h5 class="card-title text-uppercase mb-3 text-center">{{testimonial.author}}</h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Newsletter -->
+<div class="container py-5">
+    <div class="row">
+        <h1 class="text-center mb-3 text-uppercase" style="color:#2176ff;">Get Notified</h1>
+        <p class="text-center">
+            <small>
+                Subscribe to our news letter and never miss our latest cars
+            </small>
+        </p>
+        <p class="text-center">
+            <small>
+                Our newsletter is sent once in a week, every monday
+            </small>
+        </p>
+        <form action="{% url 'subscription' %}" class="form-inline d-flex justify-content-center" method="POST" style="text-align:center;">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Your Email" style="width:200px;">
+            </div>
+            <div class="form-group mx-2">
+                <button class="btn btn-primary" type="submit">Subscribe</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Website {% endblock %}
+{% block main %}
+
+<div class="container py-5">
+    <div class="row gx-4">
+        <h6 class="text-primary text-center mt-4 fw-bold">SERVICES</h6>
+         <!--  -->
+         {% for Service in services %}
+         <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center mt-5">
+                <img src="{{Service.image.url}}" alt="">
+                <h6 class="col-12 text-center mb-3">
+                    <h4 class="fw-bold">{{Service.title}}</h4>
+                    <span class="fw-light"><p>{{Service.content}}</p></span>
+                 </h6>
+                 <div class="button d-flex px-3 py-2">
+                     <a class="btn btn-primary col me-2" href="{% url 'update_service' Service.id %}">Update</a>
+                     <a class="btn btn-dark col" href="{% url 'delete_service' Service.id %}">Delete</a>
+                </div>
+         </div>
+         {% endfor %}
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row gx-4">
+        <h6 class="text-primary text-center mt-4 fw-bold">CONTACT</h6>
+        {% for Contact in contacts %}
+        <div class="col-lg-4">
+            <div class="border p-4 d-flex flex-wrap mb-2">
+                <box-icon name='layer' color='#2176ff' ></box-icon>
+                <span class="mx-2 mb-2">Address:</span>
+                <span class="mx-4 fw-bold ">{{Contact.address}}</span>
+                <div class="d-flex px-3 py-2">
+                    <a class="btn btn-primary col me-2" href="{% url 'update_contact' Contact.id %}">Update</a>
+                </div> 
+            </div> 
+        </div>  
+            <div class="col-lg-4">
+                <div class="border p-4 d-flex flex-wrap mb-2">
+                    <box-icon name='phone' type='solid' color='#2176ff' ></box-icon>
+                        <span class="mx-2 ">Phone:</span>
+                        <span class="fw-bold">{{Contact.phone}}</span>
+                        <div class="d-flex px-3 py-2">
+                            <a class="btn btn-primary col me-2" href="{% url 'update_contact' Contact.id %}">Update</a>
+                    </div>     
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="border p-4 d-flex flex-wrap">
+                    <box-icon name='envelope' color='#2176ff' ></box-icon>
+                    <span class="mx-2">E-mail:</span>
+                    <span class="fw-bold">{{Contact.email}}</span>
+                    <div class="d-flex px-3 py-2">
+                        <a class="btn btn-primary col me-2" href="{% url 'update_contact' Contact.id %}">Update</a>
+                    </div> 
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row gx-4">
+        <h6 class="text-primary text-center mt-4 fw-bold">ABOUT</h6>
+        
+    </div>
+</div>
+{% endblock %}

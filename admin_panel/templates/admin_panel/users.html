@@ -1,0 +1,35 @@
+{% extends 'admin_base.html' %}
+{% block title %} Users {% endblock %}
+{% block main  %} 
+<style>
+    .card-image-top-2{
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+        border-radius: 50% !important;
+      }  
+    </style>
+    <div class="container">
+        <div class="row">
+            <!--  -->
+            {% for User in user %}
+            <section class="mx-auto my-5" style="max-width:23rem;">
+                <div class="card">
+                    <div class="card-body d-flex">
+                        <img src="{{request.user.profiles.image.url}}" class="card-image-top-2" alt="">
+                    </div>
+                    <div class="card-text mx-3 ">
+                        <small>FirstName: {{User.first_name}}</small>
+                        <br>
+                        <small>LastName: {{User.last_name}}</small>
+                        <br>
+                        <small>Username: {{User.username}}</small>
+                        <br>
+                        <small>E-mail: {{User.email}}</small>
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

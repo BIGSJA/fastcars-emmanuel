@@ -1,0 +1,77 @@
+{% extends 'users_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Dashboard {% endblock %}
+{% block main %}
+<style>
+    .hero {
+        width: 100%;
+        height: 130vh;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-image: linear-gradient(62deg,
+            rgb(0, 0, 0, 0.7) 50%,
+            rgb(0, 0, 0, 0.7) 50%),
+            url("{% static 'images/pexels-alexander-pöllinger-10566898.jpg'%}");
+    }
+</style>
+<!-- Hero Banner Image -->
+<div class="hero"></div>
+<!-- Hero Caption -->
+<div class="hero-caption" style="position: absolute; width: 100vw; height: 100vh; top: 0; left: 0;">
+    <div class="row align-items-center justify-content-center col-12 m-0 p-0" style="height: 100vh;">
+        <div class="col-lg-8 mt-5">
+            <div class="text text-center mb-md-5 pb-md-5">
+                <h1 class="animate__animated animate__fadeInDown animate__delay-2s mb-4 text-light fw-bold">Hello <span style="color:#2176ff;">{{request.user.username}}</span></h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Car Rentals -->
+<div class="container my-5">
+    <div class="d-flex flex-wrap align-items-center" style="margin-top: -35vh; z-index: 2;">
+        <div class="col-12 col-lg-4 bg-primary">
+            <div class="text-content text-light mt-4 mx-3">
+                <h4>Make Your Trip</h4>
+            </div>
+            <form action="{% url 'booking' %}" method="POST">
+                {% csrf_token %}
+                {{booking_form|crispy}}
+                <button type="submit" class="btn btn-dark mb-2 mx-2 justify-content-center">Rent A Car Now</button>
+            </form>
+        </div>
+
+        <div class="col-lg-8 bg-light py-5 px-3" style="height: fit-content !important;">
+            <div class="text-content text-dark mx-3">
+                <h4 class="fw-bold justify-content-center align-items-center">Better Way To Rent Your Perfect Cars</h4>
+            </div>
+
+            <div class="container px-4 mt-5">
+                <div class="row gx-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center">
+                        <img src="{% static 'images/handshake.png' %}" alt="">
+                        <h6 class="col-12 text-center mt-3">
+                            <span>Select The Best Deal</span>
+                        </h6>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center">
+                        <img src="{% static 'images/car-rental.png' %}" alt="">
+                        <h6 class="col-12 text-center mt-3">
+                            <span>Reserve Your Rental Car</span>
+                        </h6>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center">
+                        <img src="{% static 'images/location.png' %}" alt="">
+                        <h6 class="col-12 text-center mt-3">
+                            <span>Choose Your Pickup Location</span>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark mt-4 mx-3">Reserve Your Perfect Car</button>
+        </div>
+    </div>
+</div>
+{% endblock%}

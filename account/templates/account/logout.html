@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Logout {% endblock %}
+{% block main %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 offset-md-3">
+          <div class="alert alert-success" role="alert">
+              You've Beeen logged out successfully
+          </div>
+          <div class="d-grid">
+            <a href="{% url 'registration' %}" class="btn btn-primary">Register</a>
+            <hr>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

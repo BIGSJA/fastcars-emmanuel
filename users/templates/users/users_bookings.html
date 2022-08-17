@@ -1,0 +1,70 @@
+{% extends 'users_base.html' %}
+{% load static %}
+{% block title %} Bookings {% endblock %}
+{% block main %}
+<style>
+    .hero{
+        width: 100%;
+        height: 70vh;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-image: linear-gradient(62deg,
+            rgb(0, 0, 0, 0.6) 50%,
+            rgb(0, 0, 0, 0.6) 50%),
+            url("{% static 'images/pexels-alexander-pöllinger-10566898.jpg'%}");
+}
+</style>
+
+<!-- Hero Banner Image -->
+<div class="hero"></div>
+<!-- Hero Caption -->
+<div class="hero-caption">
+    <div class="hero-caption" style="position: absolute; width: 100vw; height: 100vh; top: 0; left: 0;">
+        <div class="row align-items-center justify-content-center col-12 m-0 p-0" style="height: 90vh;">
+            <div class="col-lg-8">
+                <div class="text text-center mb-md- pb-md-5">
+                    <h3 class="text-light fw-bold"><span>Dashboard ></span> <span style="color:#2176ff;">Bookings</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <!--  -->
+        {% for Booking in bookings %}
+        <section class="mx-auto py-5" style="max-width:23rem;">
+            <div class="card">
+                <div class="card-text mx-3 ">
+                    <small>Vehicle: {{Booking.vehicle.brand}}</small>
+                    <br>
+                    <small>Model: {{Booking.vehicle.vehicle_model}}</small>
+                    <br>
+                    <small>Pick Up Location: {{Booking.pick_up_location}}</small>
+                    <br>
+                    <small>Pick Up Date: {{Booking.pick_up_date}}</small>
+                    <br>
+                    <small>Drop Off Location: {{Booking.drop_off_location}}</small>
+                    <br>
+                    <small>Drop Off Date: {{Booking.drop_off_date}}</small>
+                    <br>
+                    <small>Price: {{Booking.vehicle.price}}</small>
+                    <br>
+                    <div class="d-flex">
+                        <h6>Status: </h6>
+                        {% if Booking.confirmed %}
+                        <h6 class="fw-bold mx-1">Active</h6>
+                        {% else %}
+                        <h6 class="fw-bold mx-1">Inactive</h6>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+    </div>
+</div>
+{% endblock%}

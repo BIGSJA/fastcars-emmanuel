@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} About {% endblock %}
+{% block main %}
+<style>
+    .hero{
+        width: 100%;
+        height: 100vh;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-image: linear-gradient(62deg,
+            rgb(0, 0, 0, 0.6) 50%,
+            rgb(0, 0, 0, 0.6) 50%),
+            url("{% static 'images/pexels-alexander-pöllinger-10566898.jpg'%}");
+}
+</style>
+
+<!-- Hero Banner Image -->
+<div class="hero"></div>
+<!-- Hero Caption -->
+<div class="hero-caption">
+    <div class="hero-caption" style="position: absolute; width: 100vw; height: 100vh; top: 0; left: 0;">
+        <div class="row align-items-center justify-content-center col-12 m-0 p-0" style="height: 90vh;">
+            <div class="col-lg-8">
+                <div class="text text-center mb-md- pb-md-5">
+                    <h3 class="text-light fw-bold"><span>Home ></span> <span style="color:#2176ff;">About</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 class="text-dark mb-3 fw-bold"><span>Our</span> <span style="color:#2176ff;">Mission</span></h2>
+            <p class="fw-light mb-3">Our mission is to satisfy our customers to their best taste and be the best among all other competitors in the market.</p>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images/pexels-alexander-pöllinger-10566898.jpg' %}" alt="" class=" img-fluid col-12">
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-lg-6">
+            <img src="{% static 'images/pexels-alexander-pöllinger-10566898.jpg' %}" alt="" class="img-fluid col-12">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="text-dark mb-3 fw-bold"><span>Our</span> <span style="color:#2176ff;">Vision</h2>
+            <p class="fw-light mb-3">Our vision is to be the top most recommended car rentals platform across the globe with the help of our customers</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
